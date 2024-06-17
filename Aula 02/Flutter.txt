@@ -1,0 +1,19 @@
+void main() {
+  int contador(List<int>? lista, {required int x}) {
+    int quantidade = 0;
+    if (lista == null || lista.isEmpty) {
+      return 0;
+    }
+    for (int valor in lista) {
+      if (valor == x) {
+        quantidade++;
+      }
+    }
+    
+    return quantidade;
+  }
+  
+  // 0
+  print(contador([1,2,2,3], x:4));
+  
+}

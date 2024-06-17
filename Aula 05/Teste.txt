@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int contador = 0;
+  bool limite = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget msgWidget = limite
+        ? Text(
+            "Limite atingido",
+            style: TextStyle(color: Colors.red),
+          )
+        : Container();
+    print('build');
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Stateful Exemplo'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('clicou $contador vezes no botão'),
+              msgWidget,
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              if (contador < 10) {
+                contador++;
+              } else {
+                limite = true;
+              }
+            });
+          },
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
